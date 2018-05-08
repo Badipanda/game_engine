@@ -251,12 +251,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Bullet.cs" />
+    <Compile Include="Assets\BulletController.cs" />
     <Compile Include="Assets\CannonBehaviour.cs" />
     <Compile Include="Assets\CanonRotation.cs" />
     <Compile Include="Assets\DefaultBullet.cs" />
     <Compile Include="Assets\Granade.cs" />
+    <Compile Include="Assets\GroundController.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\SplittergranateBehaviour.cs" />
+    <Compile Include="Assets\V2int.cs" />
     <Compile Include="Assets\Weapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

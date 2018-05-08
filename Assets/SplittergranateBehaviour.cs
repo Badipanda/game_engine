@@ -6,7 +6,7 @@ public class SplittergranateBehaviour : MonoBehaviour
 {
     public int splitter_count = 10;
     public GameObject[] gos;
-
+    public static GroundController groundController;
     public bool isCreated = false;
 
     // Use this for initialization
@@ -59,9 +59,11 @@ public class SplittergranateBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+      
         Debug.Log("Collision Detection");
-        if (other.gameObject.CompareTag("HITABLE") || other.gameObject.CompareTag("Tank"))
+        if (other.gameObject.CompareTag("Tank"))
         {
+           
             Debug.Log("is HITABLE");
             GameObject.Destroy(gameObject);
         }
