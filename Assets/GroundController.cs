@@ -11,6 +11,21 @@ public class GroundController : MonoBehaviour {
     public Texture2D tex;
     private Texture2D tex_cur;
 
+    void OnPostprocessSprites(Texture t, Sprite[] sprites)
+    {
+        foreach (Sprite s in sprites)
+        {
+            Rect r = s.rect;
+            Vector2[] arr = new Vector2[] {
+                new Vector2 (0, 0),
+                new Vector2 (0, r.height),
+                new Vector2 (r.width, r.height),
+                new Vector2 (r.width, 0),
+            };
+            s.OverrideGeometry(arr, new ushort[] { 0, 1, 2, 0, 2, 3 });
+        }
+    }
+
     // Start() de GroundController
     void Start()
     {
@@ -45,7 +60,7 @@ public class GroundController : MonoBehaviour {
 
     void Update()
     {
-        
+       
     }
 
     public void DestroyGround(CircleCollider2D cc)
@@ -122,4 +137,5 @@ public class GroundController : MonoBehaviour {
 
         return v;
     }
+
 }
