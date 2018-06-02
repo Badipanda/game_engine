@@ -7,7 +7,17 @@ public class MainMenu : MonoBehaviour {
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("First try");
+    }
+
+    public void FourPlayers()
+    {
+        SceneManager.LoadScene("4 Players");
+    }
+
+    public void SixPlayers()
+    {
+        SceneManager.LoadScene("6 Players");
     }
 
     public void QuitGame()
