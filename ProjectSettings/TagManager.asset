@@ -10,8 +10,11 @@ TagManager:
   - firePos
   - HITABLE
   - Ground
+<<<<<<< HEAD
   - Manager
   - DefaultBullet
+=======
+>>>>>>> feature/gui
   layers:
   - Default
   - TransparentFX
@@ -52,6 +55,7 @@ TagManager:
   - name: Background
     uniqueID: 3438001537
     locked: 0
+<<<<<<< HEAD
   - name: Ground
     uniqueID: 1039299685
     locked: 0
@@ -64,3 +68,8 @@ TagManager:
   - name: UI
     uniqueID: 2083308453
     locked: 0
+=======
+  - name: New Layer
+    uniqueID: 3972787547
+    locked: 0
+>>>>>>> feature/gui
