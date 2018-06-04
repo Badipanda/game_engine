@@ -90,7 +90,7 @@ public class Weapon : MonoBehaviour
 	}
 
 	IEnumerator EndRound(){
-		yield return new WaitForSeconds (5);
+		yield return new WaitForSeconds (1);
 		manager = GameObject.FindGameObjectWithTag ("Manager");
 		playerManager = manager.GetComponent<PlayerManager> ();
 		playerManager.NextPlayerMove (); 

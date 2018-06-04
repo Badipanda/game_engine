@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GroundController : MonoBehaviour
 {
@@ -46,8 +47,19 @@ public class GroundController : MonoBehaviour
 
 	void Update ()
 	{
-        
-	}
+        //uses the p button to pause and unpause the game
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            if (Time.timeScale == 1)
+            {
+                SceneManager.LoadScene("Menu");
+            }
+            else if (Time.timeScale == 0)
+            {
+                SceneManager.LoadScene("Menu");
+            }
+        }
+    }
 
 	public void DestroyGround (CircleCollider2D cc)
 	{
