@@ -34,7 +34,13 @@ public class ButtonManager : MonoBehaviour {
 				weaponScript.SelectWeapon (check);
 
 			}
+
 		}
+		shotgun = shotgun.GetComponent<Button> ();
+		ColorBlock shotgunColor = shotgun.GetComponent<Button> ().colors;
+		shotgunColor.normalColor = Color.cyan;
+		shotgun.colors = shotgunColor;
+		print("Heurikka");
 	}
 	
 	// Update is called once per frame
