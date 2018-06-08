@@ -11,9 +11,9 @@ public class PlayerManager : MonoBehaviour
 	public int activePlayers;
 	public GameObject[] tanks;
 	public PlayerMovement playerScript;
-    public Color playercolor; 
 
-    
+
+
     public enum PerformAction
 	{
 		
@@ -24,7 +24,6 @@ public class PlayerManager : MonoBehaviour
 	{
         //	Initialize active Players
         activePlayers = 0;
-
         //	FindObjectOfType all the Players
 
         tanks = GameObject.FindGameObjectsWithTag ("Tank");
@@ -42,16 +41,17 @@ public class PlayerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
+        
     }
 
 	void SetActivePlayer(){
 
         tanks = GameObject.FindGameObjectsWithTag ("Tank");
+        
 
-		foreach (GameObject tank in tanks) {
-            playercolor = tank.GetComponent<SpriteRenderer>().material.color = Color.red;
-			playerScript = tank.GetComponent<PlayerMovement> ();
+        foreach (GameObject tank in tanks) {
+            
+            playerScript = tank.GetComponent<PlayerMovement> ();
 			if (playerScript.playerID == currentPlayer) {
 				playerScript.is_movable = true;
 				Debug.Log ("Tank mit der ID: " + playerScript.playerID + " wurde aktiviert!");

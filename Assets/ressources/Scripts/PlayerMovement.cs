@@ -14,7 +14,10 @@ public class PlayerMovement : MonoBehaviour
 	public bool is_movable = false;
 	private SpriteRenderer facing_right;
 
-	private float h;
+    public Sprite nonActivePlayer;
+    public Sprite activePlayer;
+
+    private float h;
 
 	void Start ()
 	{
@@ -28,8 +31,15 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update ()
 	{
-//		playerManager.NextPlayerMove();
-	}
+        //		playerManager.NextPlayerMove();
+        if (is_movable)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = activePlayer;
+        }
+        else {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = nonActivePlayer;
+        }
+    }
 
 
 	public void FixedUpdate ()
