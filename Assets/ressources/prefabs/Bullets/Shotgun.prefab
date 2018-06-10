@@ -152,7 +152,7 @@ MonoBehaviour:
   destructionCircle: {fileID: 58912037127731112}
   mousePosition: {x: 0, y: 0}
   firePointPosition: {x: 0, y: 0}
-  splitter_count: 10
+  splitter_count: 3
   gos: []
   isCreated: 0
 --- !u!212 &212799304519629294

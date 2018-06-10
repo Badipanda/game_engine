@@ -13,7 +13,7 @@ public class BulletController : MonoBehaviour
 	// Use this for initialization
 	protected virtual void  Start ()
 	{
-		gameObject.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 100);
+//		gameObject.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 100);
 	}
 
 	// Update is called once per frame
@@ -32,9 +32,15 @@ public class BulletController : MonoBehaviour
 			Destroy (gameObject);
             
 		} else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
-//			Destroy (gameObject);
+			Destroy (gameObject);
 			print ("hit Tank");
 		}
+	}
+	public void SetPosition(Vector2 mouse, Vector2 fire){
+		mousePosition = mouse ;
+		firePointPosition = fire;
+		Debug.Log("Mouse0: "+ mousePosition +"Fire0: " +firePointPosition);
+
 	}
 
 	void OnBecameInvisible ()

@@ -7,6 +7,8 @@ public class Bullet {
     public float speed = 0;
     public Transform firePoint;
 
+	public Vector2 mousePosition;
+	public Vector2 firePointPosition;
 	public int damage = 10;
 
 
@@ -30,8 +32,8 @@ public class Bullet {
         Debug.Log("shoot");
 
 
-        Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-        Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
+        mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
 
         RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100);
         Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) * 100, Color.green);
@@ -39,9 +41,9 @@ public class Bullet {
         GameObject Clone;
         Clone = (GameObject.Instantiate(bullet, firePoint.position, firePoint.rotation)) as GameObject;
         Debug.Log("BuLLet erstellt");
-		Clone.GetComponent<BulletController> ().firePointPosition = firePointPosition;
-		Clone.GetComponent<BulletController> ().mousePosition = mousePosition;
-//        Clone.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * speed);
+
+		Clone.GetComponent<BulletController> ().SetPosition (mousePosition, firePointPosition);
+        Clone.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * speed);
 
 
     }

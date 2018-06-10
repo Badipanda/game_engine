@@ -26,13 +26,15 @@ public class SplittergranateBehaviour : BulletController
 		//Clone of the bullet
 		if (!isCreated) {
 			float bla = 1f;
+			float hop = 0f;
 			//GameObject Clone;
 			//Clone = (Instantiate(gameObject, transform.position, transform.rotation)) as GameObject;
 			gos = new GameObject[splitter_count];
 			for (int i = 0; i < gos.Length; i++) {
 				bla = bla * (-1f);
-				GameObject clone = (GameObject)Instantiate (gameObject, transform.position, transform.rotation);
-				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((20 * bla), (10 * bla)) * 10f);
+				GameObject clone = (GameObject)Instantiate (gameObject, (transform.position + new Vector3((hop*bla),0f,0f)), transform.rotation);
+				clone.GetComponent<Rigidbody2D> ().AddForce (new Vector2 ((10 * (bla*-1)), 0) * 150f);
+				hop += 0.01f;
 				gos [i] = clone;
 			}
 

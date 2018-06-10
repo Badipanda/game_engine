@@ -142,7 +142,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.13, y: 0.54}
+    oldSize: {x: 1.15, y: 0.57}
     newSize: {x: 1.13, y: 0.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -221,6 +221,8 @@ MonoBehaviour:
   speed: 100
   playerID: 0
   is_movable: 0
+  nonActivePlayer: {fileID: 0}
+  activePlayer: {fileID: 0}
 --- !u!114 &114223193995730254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,7 +258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1866975007796358, guid: ba644614fba27f944940551dbd4dc7f9,
     type: 2}
-  playerManager: {fileID: 0}
   fireRate: 0
   damage: 10
   whatToHit:

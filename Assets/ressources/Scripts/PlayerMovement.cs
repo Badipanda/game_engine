@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update ()
 	{
-        //		playerManager.NextPlayerMove();
+//        		playerManager.NextPlayerMove();
         if (is_movable)
         {
             this.gameObject.GetComponent<SpriteRenderer>().sprite = activePlayer;
