@@ -6,8 +6,8 @@ public class BulletController : MonoBehaviour
 {
 
 	public CircleCollider2D destructionCircle;
-	public Vector2 mousePosition ;
-	public Vector2 firePointPosition ;
+	public Vector2 mousePosition;
+	public Vector2 firePointPosition;
 	public static GroundController groundController;
 
 	// Use this for initialization
@@ -22,9 +22,20 @@ public class BulletController : MonoBehaviour
        
 	}
 
+	void OnTriggerEnter (Collider other)
+	{
+		print ("enter trigger");
+		if (other.tag == "Explosionradius") {
+			print ("Radius hit");
+		}
+	}
+
 	void OnCollisionEnter2D (Collision2D coll)
 	{
 		Debug.Log ("enter collision");
+		Debug.Log ("GameObject hit: " + coll.gameObject.name);
+		CircleCollider2D test = gameObject.GetComponentInChildren<CircleCollider2D>();
+		test.
 
 		if (coll.collider.tag == "Ground") {
 
@@ -35,11 +46,15 @@ public class BulletController : MonoBehaviour
 			Destroy (gameObject);
 			print ("hit Tank");
 		}
+
+
 	}
-	public void SetPosition(Vector2 mouse, Vector2 fire){
-		mousePosition = mouse ;
+
+	public void SetPosition (Vector2 mouse, Vector2 fire)
+	{
+		mousePosition = mouse;
 		firePointPosition = fire;
-		Debug.Log("Mouse0: "+ mousePosition +"Fire0: " +firePointPosition);
+		Debug.Log ("Mouse0: " + mousePosition + "Fire0: " + firePointPosition);
 
 	}
 

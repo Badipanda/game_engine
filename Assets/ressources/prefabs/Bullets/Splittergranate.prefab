@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 58894416365790190}
   m_Layer: 0
   m_Name: Explosionradius
-  m_TagString: Untagged
+  m_TagString: Explosionradius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,8 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpriteTransform: {fileID: 0}
   destructionCircle: {fileID: 58894416365790190}
+  mousePosition: {x: 0, y: 0}
+  firePointPosition: {x: 0, y: 0}
 --- !u!114 &114136204272041358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -148,9 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8674cf2b721a39546a4afcf2ba963368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destructionCircle: {fileID: 0}
+  mousePosition: {x: 0, y: 0}
+  firePointPosition: {x: 0, y: 0}
   splitter_count: 10
-  gos: []
-  isCreated: 0
 --- !u!212 &212960164124447264
 SpriteRenderer:
   m_ObjectHideFlags: 1

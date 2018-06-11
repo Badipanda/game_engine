@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Manager
   - DefaultBullet
+  - Explosionradius
   layers:
   - Default
   - TransparentFX
