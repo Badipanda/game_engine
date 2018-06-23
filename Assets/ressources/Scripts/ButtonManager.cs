@@ -20,9 +20,9 @@ public class ButtonManager : MonoBehaviour {
 		splittergranate = splittergranate.GetComponent<Button> ();
 		shotgun = shotgun.GetComponent<Button> ();
 
-		granate.onClick.AddListener (delegate{TaskOnWeaponBtn(granatePrefab); });
-		splittergranate.onClick.AddListener (delegate{TaskOnWeaponBtn(splittergranatePrefab); });
-		shotgun.onClick.AddListener (delegate{TaskOnWeaponBtn(shotgunPrefab); });
+		granate.onClick.AddListener (delegate{TaskOnWeaponBtn(granatePrefab); granate.GetComponent<Image>().color = Color.red; splittergranate.GetComponent<Image>().color = Color.white; shotgun.GetComponent<Image>().color = Color.white;});
+		splittergranate.onClick.AddListener (delegate{TaskOnWeaponBtn(splittergranatePrefab); granate.GetComponent<Image>().color = Color.white; splittergranate.GetComponent<Image>().color = Color.red; shotgun.GetComponent<Image>().color = Color.white; });
+		shotgun.onClick.AddListener (delegate{TaskOnWeaponBtn(shotgunPrefab); shotgun.GetComponent<Image>().color = Color.red; splittergranate.GetComponent<Image>().color = Color.white; granate.GetComponent<Image>().color = Color.white; });
 	}
 
 	void TaskOnWeaponBtn(GameObject check){
@@ -39,6 +39,23 @@ public class ButtonManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+		if (granatePrefab && !splittergranatePrefab && !shotgunPrefab)
+        {
+            granate.GetComponent<Image>().color = Color.red;
+            splittergranate.GetComponent<Image>().color = Color.white;
+            shotgun.GetComponent<Image>().color = Color.white;
+        }
+        if (!granatePrefab && splittergranatePrefab && !shotgunPrefab)
+        {
+            granate.GetComponent<Image>().color = Color.white;
+            splittergranate.GetComponent<Image>().color = Color.red;
+            shotgun.GetComponent<Image>().color = Color.white;
+        }
+        if (!granatePrefab && !splittergranatePrefab && shotgunPrefab)
+        {
+            granate.GetComponent<Image>().color = Color.white;
+            splittergranate.GetComponent<Image>().color = Color.white;
+            shotgun.GetComponent<Image>().color = Color.red;
+        }
+    }
 }
