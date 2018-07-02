@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour {
 	public Button granate;
 	public Button splittergranate;
 	public Button shotgun;
+    public Button healthbar;
 
 	public GameObject granatePrefab;
 	public GameObject splittergranatePrefab;
