@@ -43,7 +43,7 @@ public class Bullet {
         Debug.Log("BuLLet erstellt");
 
 		Clone.GetComponent<BulletController> ().SetPosition (mousePosition, firePointPosition);
-        Clone.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * speed);
+        Clone.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 10);
 
 
     }
