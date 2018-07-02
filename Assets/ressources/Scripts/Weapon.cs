@@ -17,9 +17,16 @@ public class Weapon : MonoBehaviour
 	public float damage = 10;
 	public LayerMask whatToHit;
 	public bool hasFired = false;
-	private float cannonPower = 100f;
+	private float cannonPower = 50f;
 	private float timeToFire = 3;
 	Transform firePoint;
+	Transform crossPos;
+	public GameObject crosshair;
+	public GameObject powerbar;
+
+	Vector3 barTrans;
+	Vector3 originBarTrans;
+
 
 
 	// Use this for initialization
@@ -27,18 +34,26 @@ public class Weapon : MonoBehaviour
 	{
 		Debug.Log ("Es ist folgende Waffe ausgesucht: " + bulletPrefab);
 		firePoint = transform.Find ("fire_position");
+		crossPos = transform.Find ("crosshair");
 		if (firePoint == null) {
 			Debug.LogError ("No Firepoint? What?!");
 		}
-        
+		if (crossPos == null) {
+			Debug.LogError ("No Crosshair? What?!");
+		}
+		crosshair.SetActive(false);
+		barTrans = powerbar.transform.localScale;
+		originBarTrans = barTrans;
+		barTrans.x = (originBarTrans.x * (cannonPower / 100f));
+		powerbar.transform.localScale = barTrans;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		
-       
+		crosshair.SetActive(false);
 		if (GetComponentInParent<PlayerMovement> ().is_movable && hasFired == false) {
+			crosshair.SetActive(true);
 			if (fireRate == 0) {
 				if (Input.GetButtonDown ("Fire1")) {
 					Shoot ();
@@ -49,18 +64,47 @@ public class Weapon : MonoBehaviour
 					Shoot ();
 				}
 			}
-//			if (Input.GetMouseButtonUp(2) && GetComponentInParent<PlayerMovement> ().is_movable) {
-//				manager = GameObject.FindGameObjectWithTag ("Manager");
-//				playerManager = manager.GetComponentInChildren<PlayerManager> ();
-//				playerManager.NextPlayerMove (); 
-//				print ("playerwechsel" + this);
-//			}
+			if (Input.GetKey (KeyCode.E)) {
+				IncreasePower ();
+			}
+			if (Input.GetKey (KeyCode.Q)) {
+				DecreasePower ();
+			}
+
+
+
+
 		}
 		if (this.hasFired) {
 			
 		}
 		
 	}
+
+	public void IncreasePower(){
+		print ("E pressed");
+		if (cannonPower < 100f) {
+			cannonPower += 1f;
+			barTrans.x = (originBarTrans.x * (cannonPower / 100f));
+			powerbar.transform.localScale = barTrans;
+
+		}
+
+		print ("actual cannonpower : " +cannonPower);
+	}
+
+	public void DecreasePower(){
+		print ("Q pressed");
+		if (cannonPower > 16) {
+			cannonPower -= 1f;
+			barTrans.x = (originBarTrans.x * (cannonPower / 100f));
+			powerbar.transform.localScale = barTrans;
+
+		}
+
+		print ("actual cannonpower : " +cannonPower);
+	}
+
 	public void SelectWeapon(GameObject bullet){
 		this.bulletPrefab = bullet;
 		print ("Bullet wurde gewechselt zu: " + bulletPrefab);
@@ -73,7 +117,7 @@ public class Weapon : MonoBehaviour
 			print ("dont shoot");
 		} else {
 			//Initiate the Bullet
-			Bullet bullet = new Bullet (bulletPrefab, cannonPower, firePoint);
+			Bullet bullet = new Bullet (bulletPrefab, cannonPower, firePoint, crossPos);
 			//		bullet.shoot ();
 			//		this.hasFired = true;
 			GetComponentInParent<PlayerMovement> ().is_movable = false;

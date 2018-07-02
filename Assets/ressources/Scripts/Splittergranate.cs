@@ -8,7 +8,7 @@ public class Splittergranate : Bullet{
 
 
 
-	public Splittergranate(GameObject bulletType, float bulletSpeed, Transform bulletPosition) : base(bulletType, bulletSpeed, bulletPosition)
+	public Splittergranate(GameObject bulletType, float bulletSpeed, Transform bulletPosition, Transform crossPosition) : base(bulletType, bulletSpeed, bulletPosition, crossPosition)
     {
 		
     }
