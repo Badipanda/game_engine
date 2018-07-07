@@ -118,6 +118,27 @@ Transform:
   m_PrefabParentObject: {fileID: 4288645298330716, guid: aa5eb607102452640aeb09023962da1e,
     type: 2}
   m_PrefabInternal: {fileID: 1679990706}
+--- !u!1 &29273426 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1972508536488830, guid: aa5eb607102452640aeb09023962da1e,
+    type: 2}
+  m_PrefabInternal: {fileID: 118828571}
+--- !u!114 &29273431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29273426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3864cb18ff4421e4aa2db07d6733dd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPlayer: 1
+  activePlayers: 0
+  tanks: []
+  playerScript: {fileID: 0}
+  health: {fileID: 1720936113}
 --- !u!1 &68917267
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +206,7 @@ MonoBehaviour:
   activePlayers: 0
   tanks: []
   playerScript: {fileID: 0}
+  health: {fileID: 0}
 --- !u!1001 &118828571
 Prefab:
   m_ObjectHideFlags: 0
@@ -852,6 +874,7 @@ GameObject:
   - component: {fileID: 509959311}
   - component: {fileID: 509959310}
   - component: {fileID: 509959309}
+  - component: {fileID: 509959314}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Tank
@@ -1017,6 +1040,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &509959314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509959307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3864cb18ff4421e4aa2db07d6733dd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPlayer: 1
+  activePlayers: 0
+  tanks: []
+  playerScript: {fileID: 0}
+  health: {fileID: 706819046}
 --- !u!1 &545466796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1219,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 706819045}
+  - component: {fileID: 706819046}
   m_Layer: 5
   m_Name: Healthbar_P2
   m_TagString: Untagged
@@ -1208,6 +1248,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &706819046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 706819044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionCircle: {fileID: 0}
+  mousePosition: {x: 0, y: 0}
+  firePointPosition: {x: 0, y: 0}
+  healthbar_P1: {fileID: 1777376893}
+  lifepointsText: {fileID: 397024890}
+  lifepoints: 50
+  gotHit: 0
+  fillAmount: 0.5
 --- !u!1 &728240068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,6 +1529,27 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 873834410}
+--- !u!1 &890721319 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1972508536488830, guid: aa5eb607102452640aeb09023962da1e,
+    type: 2}
+  m_PrefabInternal: {fileID: 463467251}
+--- !u!114 &890721324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 890721319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3864cb18ff4421e4aa2db07d6733dd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPlayer: 1
+  activePlayers: 0
+  tanks: []
+  playerScript: {fileID: 0}
+  health: {fileID: 2047076179}
 --- !u!1 &1118448806
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,6 +2196,27 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1400335795}
+--- !u!1 &1524580826 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1972508536488830, guid: aa5eb607102452640aeb09023962da1e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1679990706}
+--- !u!114 &1524580831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1524580826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3864cb18ff4421e4aa2db07d6733dd12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPlayer: 1
+  activePlayers: 0
+  tanks: []
+  playerScript: {fileID: 0}
+  health: {fileID: 1756162080}
 --- !u!4 &1570948461 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4288645298330716, guid: aa5eb607102452640aeb09023962da1e,
@@ -2371,6 +2472,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1720936112}
+  - component: {fileID: 1720936113}
   m_Layer: 5
   m_Name: Healthbar_P1
   m_TagString: Untagged
@@ -2399,6 +2501,25 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1720936113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1720936111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionCircle: {fileID: 0}
+  mousePosition: {x: 0, y: 0}
+  firePointPosition: {x: 0, y: 0}
+  healthbar_P1: {fileID: 233874231}
+  lifepointsText: {fileID: 841949471}
+  lifepoints: 100
+  gotHit: 0
+  fillAmount: 1
 --- !u!1 &1730592449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,6 +2559,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1756162079}
+  - component: {fileID: 1756162080}
   m_Layer: 5
   m_Name: Healthbar_P3
   m_TagString: Untagged
@@ -2466,6 +2588,25 @@ RectTransform:
   m_AnchoredPosition: {x: 130, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1756162080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1756162078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionCircle: {fileID: 0}
+  mousePosition: {x: 0, y: 0}
+  firePointPosition: {x: 0, y: 0}
+  healthbar_P1: {fileID: 1312189856}
+  lifepointsText: {fileID: 132397381}
+  lifepoints: 100
+  gotHit: 0
+  fillAmount: 1
 --- !u!1 &1759440933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,6 +3272,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2047076178}
+  - component: {fileID: 2047076179}
   m_Layer: 5
   m_Name: Healthbar_P4
   m_TagString: Untagged
@@ -3159,6 +3301,25 @@ RectTransform:
   m_AnchoredPosition: {x: 270, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2047076179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2047076177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionCircle: {fileID: 0}
+  mousePosition: {x: 0, y: 0}
+  firePointPosition: {x: 0, y: 0}
+  healthbar_P1: {fileID: 1964537518}
+  lifepointsText: {fileID: 1400335797}
+  lifepoints: 100
+  gotHit: 0
+  fillAmount: 1
 --- !u!1 &2115455812
 GameObject:
   m_ObjectHideFlags: 0

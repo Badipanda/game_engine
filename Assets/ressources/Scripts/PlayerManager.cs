@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 
 
@@ -12,7 +13,8 @@ public class PlayerManager : MonoBehaviour
 	public GameObject[] tanks;
 	public PlayerMovement playerScript;
 
-
+    [SerializeField]
+    public BulletController health;
 
     public enum PerformAction
 	{
@@ -41,7 +43,7 @@ public class PlayerManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        
+
     }
 
 	void SetActivePlayer(){
