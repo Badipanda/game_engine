@@ -11,12 +11,8 @@ public class ShotgunBehaviour : BulletController
 
 
 	// Use this for initialization
-	protected override void Start ()
+	void Start ()
 	{
-		print("Mouse: "+ mousePosition +"Fire: " +firePointPosition);
-
-//		gameObject.GetComponent<Rigidbody2D>().AddForce((mousePosition - transform.position) * 100f);
-
 		if (isCreated == false) {
 			StartCoroutine (EndRound ());
 

@@ -64,12 +64,13 @@ public class Weapon : MonoBehaviour
 					Shoot ();
 				}
 			}
-			if (Input.GetKey (KeyCode.E)) {
+			if (Input.GetKey (KeyCode.W)) {
 				IncreasePower ();
 			}
-			if (Input.GetKey (KeyCode.Q)) {
+			if (Input.GetKey (KeyCode.S)) {
 				DecreasePower ();
 			}
+
 
 
 
@@ -82,7 +83,7 @@ public class Weapon : MonoBehaviour
 	}
 
 	public void IncreasePower(){
-		print ("E pressed");
+//		print ("E pressed");
 		if (cannonPower < 100f) {
 			cannonPower += 1f;
 			barTrans.x = (originBarTrans.x * (cannonPower / 100f));
@@ -90,11 +91,11 @@ public class Weapon : MonoBehaviour
 
 		}
 
-		print ("actual cannonpower : " +cannonPower);
+//		print ("actual cannonpower : " +cannonPower);
 	}
 
 	public void DecreasePower(){
-		print ("Q pressed");
+//		print ("Q pressed");
 		if (cannonPower > 16) {
 			cannonPower -= 1f;
 			barTrans.x = (originBarTrans.x * (cannonPower / 100f));
@@ -102,7 +103,7 @@ public class Weapon : MonoBehaviour
 
 		}
 
-		print ("actual cannonpower : " +cannonPower);
+//		print ("actual cannonpower : " +cannonPower);
 	}
 
 	public void SelectWeapon(GameObject bullet){

@@ -37,10 +37,10 @@ GameObject:
   - component: {fileID: 4201842556863846}
   - component: {fileID: 212510225591095420}
   - component: {fileID: 50963773836700606}
-  - component: {fileID: 114457578738255432}
   - component: {fileID: 58568136476931198}
+  - component: {fileID: 114731533732352850}
   m_Layer: 5
-  m_Name: Granate
+  m_Name: Bouncegranate
   m_TagString: DefaultBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4201842556863846
 Transform:
   m_ObjectHideFlags: 1
@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1866975007796358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.12, y: 0, z: 0}
+  m_LocalPosition: {x: -6.49, y: 0, z: 0}
   m_LocalScale: {x: 1.6536086, y: 1.6536081, z: 1.6536081}
   m_Children:
   - {fileID: 4388547957106804}
@@ -131,7 +131,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 1866975007796358}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fee33a31f9e39e54294c428639990458, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -153,7 +153,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &114457578738255432
+--- !u!114 &114731533732352850
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -161,12 +161,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1866975007796358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b1bb84cd8d85fd4199b65cb6d0420ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   destructionCircle: {fileID: 58818408021724206}
   mousePosition: {x: 0, y: 0}
   firePointPosition: {x: 0, y: 0}
+  overriden: 0
   healthbar_P1: {fileID: 0}
   lifepointsText: {fileID: 0}
   lifepoints: 0
@@ -251,7 +252,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.5800203, b: 0.25735295, a: 1}
+  m_Color: {r: 0, g: 0.5800203, b: 0.25735295, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

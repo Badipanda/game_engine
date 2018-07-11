@@ -10,20 +10,24 @@ public class ButtonManager : MonoBehaviour {
 	public Button granate;
 	public Button splittergranate;
 	public Button shotgun;
+	public Button bouncegranate;
     public Button healthbar;
 
 	public GameObject granatePrefab;
 	public GameObject splittergranatePrefab;
 	public GameObject shotgunPrefab;
+	public GameObject bouncegranatePrefab;
 	// Use this for initialization
 	void Start () {
 		granate = granate.GetComponent<Button> ();
 		splittergranate = splittergranate.GetComponent<Button> ();
 		shotgun = shotgun.GetComponent<Button> ();
+		bouncegranate = bouncegranate.GetComponent<Button> ();
 
 		granate.onClick.AddListener (delegate{TaskOnWeaponBtn(granatePrefab); granate.GetComponent<Image>().color = Color.red; splittergranate.GetComponent<Image>().color = Color.white; shotgun.GetComponent<Image>().color = Color.white;});
 		splittergranate.onClick.AddListener (delegate{TaskOnWeaponBtn(splittergranatePrefab); granate.GetComponent<Image>().color = Color.white; splittergranate.GetComponent<Image>().color = Color.red; shotgun.GetComponent<Image>().color = Color.white; });
 		shotgun.onClick.AddListener (delegate{TaskOnWeaponBtn(shotgunPrefab); shotgun.GetComponent<Image>().color = Color.red; splittergranate.GetComponent<Image>().color = Color.white; granate.GetComponent<Image>().color = Color.white; });
+		bouncegranate.onClick.AddListener (delegate{TaskOnWeaponBtn(bouncegranatePrefab); shotgun.GetComponent<Image>().color = Color.white; splittergranate.GetComponent<Image>().color = Color.white; granate.GetComponent<Image>().color = Color.white; });
 	}
 
 	void TaskOnWeaponBtn(GameObject check){
@@ -33,7 +37,6 @@ public class ButtonManager : MonoBehaviour {
 			if (playerScript.is_movable == true) {
 				Weapon weaponScript = tank.GetComponentInChildren<Weapon> ();
 				weaponScript.SelectWeapon (check);
-
 			}
 		}
 	}

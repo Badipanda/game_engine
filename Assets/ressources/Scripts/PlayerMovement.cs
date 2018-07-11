@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public Sprite activePlayer;
 
     private float h;
+	private float jump_duration;
+
 
 	void Start ()
 	{
@@ -52,16 +54,29 @@ public class PlayerMovement : MonoBehaviour
 			//Check to flip;
 			Flip ();
 
-			float v = Input.GetAxis ("Vertical");
+			Vector3 actual_velocity = Char.velocity;
 
-            
-			Vector3 my_v = Char.velocity;
 
-			my_v.x = h * speed * Time.deltaTime;
-			if (v > 0) {
-				my_v.y = v * speed * Time.deltaTime;
+
+			if (Input.GetButton ("Jump")) {
+				
+				if (jump_duration <= 1f) {
+					jump_duration += 0.1f;
+				}
+
+				actual_velocity.y = jump_duration * speed * Time.deltaTime;
+
 			}
-			Char.velocity = my_v;
+
+			if (Input.GetButtonUp ("Jump")) {
+				jump_duration = 0;
+			}
+            
+
+
+			actual_velocity.x = h * speed * Time.deltaTime;
+
+			Char.velocity = actual_velocity;
 
            
 		}

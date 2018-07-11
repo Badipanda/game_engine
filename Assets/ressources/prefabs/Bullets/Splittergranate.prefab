@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 212960164124447264}
   - component: {fileID: 50039868477983266}
   - component: {fileID: 114136204272041358}
-  - component: {fileID: 114072417566196782}
   - component: {fileID: 58466002257817392}
   m_Layer: 5
   m_Name: Splittergranate
@@ -124,20 +123,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.17
---- !u!114 &114072417566196782
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919886449530240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destructionCircle: {fileID: 58894416365790190}
-  mousePosition: {x: 0, y: 0}
-  firePointPosition: {x: 0, y: 0}
 --- !u!114 &114136204272041358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,6 +137,12 @@ MonoBehaviour:
   destructionCircle: {fileID: 58894416365790190}
   mousePosition: {x: 0, y: 0}
   firePointPosition: {x: 0, y: 0}
+  overriden: 0
+  healthbar_P1: {fileID: 0}
+  lifepointsText: {fileID: 0}
+  lifepoints: 0
+  gotHit: 0
+  fillAmount: 0
   splitter_count: 10
 --- !u!212 &212960164124447264
 SpriteRenderer:

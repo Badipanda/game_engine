@@ -37,7 +37,6 @@ GameObject:
   - component: {fileID: 4124116533714766}
   - component: {fileID: 212799304519629294}
   - component: {fileID: 50448296599842570}
-  - component: {fileID: 114073794689718460}
   - component: {fileID: 58174394936039900}
   - component: {fileID: 114078596070572066}
   m_Layer: 5
@@ -124,20 +123,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.17
---- !u!114 &114073794689718460
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1681954295034604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5e96b38bd86fe4cbe60e5b14e585d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destructionCircle: {fileID: 58912037127731112}
-  mousePosition: {x: 0, y: 0}
-  firePointPosition: {x: 0, y: 0}
 --- !u!114 &114078596070572066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,6 +137,12 @@ MonoBehaviour:
   destructionCircle: {fileID: 58912037127731112}
   mousePosition: {x: 0, y: 0}
   firePointPosition: {x: 0, y: 0}
+  overriden: 0
+  healthbar_P1: {fileID: 0}
+  lifepointsText: {fileID: 0}
+  lifepoints: 0
+  gotHit: 0
+  fillAmount: 0
   splitter_count: 3
   gos: []
   isCreated: 0
