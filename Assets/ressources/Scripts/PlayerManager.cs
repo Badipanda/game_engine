@@ -12,6 +12,9 @@ public class PlayerManager : MonoBehaviour
 	public int activePlayers;
 	public GameObject[] tanks;
 	public PlayerMovement playerScript;
+	public Weapon weaponScript;
+	private static GameObject manager;
+	public ButtonManager buttonManager;
 
     [SerializeField]
     public BulletController health;
@@ -32,6 +35,9 @@ public class PlayerManager : MonoBehaviour
 		foreach (GameObject tank in tanks) {
 			activePlayers++;
 			playerScript = tank.GetComponent<PlayerMovement> ();
+
+
+
 			playerScript.playerID = activePlayers;
 			Debug.Log (tank + " hat die ID: " + playerScript.playerID);
             
@@ -56,6 +62,14 @@ public class PlayerManager : MonoBehaviour
             playerScript = tank.GetComponent<PlayerMovement> ();
 			if (playerScript.playerID == currentPlayer) {
 				playerScript.is_movable = true;
+				weaponScript = playerScript.GetComponentInChildren<Weapon> ();
+
+
+				manager = GameObject.FindGameObjectWithTag ("Manager");
+				buttonManager = manager.GetComponent<ButtonManager> ();
+				buttonManager.SetActiveButton (weaponScript.bulletPrefab);
+
+
 				Debug.Log ("Tank mit der ID: " + playerScript.playerID + " wurde aktiviert!");
 			} else {
 				playerScript.is_movable = false;

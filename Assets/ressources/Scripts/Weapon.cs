@@ -112,6 +112,7 @@ public class Weapon : MonoBehaviour
 //		Event.current.Use ();
 	}
 
+
 	void Shoot ()
 	{
 		if (EventSystem.current.IsPointerOverGameObject ()) {
