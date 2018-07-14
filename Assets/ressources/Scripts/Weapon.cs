@@ -116,7 +116,7 @@ public class Weapon : MonoBehaviour
 	void Shoot ()
 	{
 		if (EventSystem.current.IsPointerOverGameObject ()) {
-			print ("dont shoot");
+			
 		} else {
 			//Initiate the Bullet
 			Bullet bullet = new Bullet (bulletPrefab, cannonPower, firePoint, crossPos);
@@ -136,10 +136,10 @@ public class Weapon : MonoBehaviour
 	}
 
 	IEnumerator EndRound(){
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (3);
 		manager = GameObject.FindGameObjectWithTag ("Manager");
 		playerManager = manager.GetComponent<PlayerManager> ();
 		playerManager.NextPlayerMove (); 
-		print ("playerwechsel" + this);
+
 	}
 }

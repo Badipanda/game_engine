@@ -78,7 +78,7 @@ public class ButtonManager : MonoBehaviour
 
 	public void SetActiveButton (GameObject prefab)
 	{
-		print ("--------------Hier steht ein prefab " + prefab);
+		
 		if (prefab == granatePrefab) {
 			granate.GetComponent<Image> ().color = Color.red;
 			splittergranate.GetComponent<Image> ().color = Color.white;

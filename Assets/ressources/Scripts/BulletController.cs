@@ -3,8 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 
 [Serializable]
 public class BulletController : MonoBehaviour
@@ -15,6 +14,7 @@ public class BulletController : MonoBehaviour
 	public Vector2 firePointPosition;
 	public static GroundController groundController;
 
+<<<<<<< HEAD
     public ParticleSystem boom;
     public GameObject explosion;
 
@@ -22,33 +22,63 @@ public class BulletController : MonoBehaviour
     
 
 	public bool overriden;
+=======
+
+
+	private Player_Health p_health;
+   
+
+
+
+>>>>>>> a69519aac3c82e857cef583dee84444dc52a8cd6
 
     private void Awake()
     {
         boom.Play();
 
+<<<<<<< HEAD
     }
+=======
+    [SerializeField]
+
+>>>>>>> a69519aac3c82e857cef583dee84444dc52a8cd6
 
     // Use this for initialization
     public virtual void Start ()
 	{
-		overriden = false;
+		
         //		gameObject.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 100);
+<<<<<<< HEAD
+=======
+      
+>>>>>>> a69519aac3c82e857cef583dee84444dc52a8cd6
     }
 
 	// Update is called once per frame
 	public void Update ()
 	{
+<<<<<<< HEAD
         boom.Play();
+=======
+      
+        
+>>>>>>> a69519aac3c82e857cef583dee84444dc52a8cd6
     }
 
 	public virtual void OnCollisionEnter2D (Collision2D coll)
 	{
+<<<<<<< HEAD
 
         
         if (!overriden) {
             
             Debug.Log ("enter collision");
+=======
+        
+
+
+			
+>>>>>>> a69519aac3c82e857cef583dee84444dc52a8cd6
 			if (coll.collider.tag == "Ground") {
 
 				groundController.DestroyGround (destructionCircle);
@@ -59,6 +89,7 @@ public class BulletController : MonoBehaviour
 
             } else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
                 Destroy (gameObject);
+<<<<<<< HEAD
                 Instantiate(boom);
                 boom.Play();
                 print ("hit Tank");
@@ -68,6 +99,18 @@ public class BulletController : MonoBehaviour
             
 
         }
+=======
+
+				if (coll.gameObject.GetComponent<Player_Health> () != null) {
+//					print ("folgender Tank wurde getroffen: " + coll.gameObject);
+					p_health = coll.gameObject.GetComponent<Player_Health>();
+					p_health.SetHealth (10f);
+				}
+                //health.TakeDamage(20);
+                
+            }
+		
+>>>>>>> a69519aac3c82e857cef583dee84444dc52a8cd6
 	}
     public void OnTriggerEnter(Collider other)
     {
@@ -85,10 +128,13 @@ public class BulletController : MonoBehaviour
 	{
 		mousePosition = mouse;
 		firePointPosition = fire;
-		Debug.Log ("Mouse0: " + mousePosition + "Fire0: " + firePointPosition);
 
 	}
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> a69519aac3c82e857cef583dee84444dc52a8cd6
 
     void OnBecameInvisible ()
 	{

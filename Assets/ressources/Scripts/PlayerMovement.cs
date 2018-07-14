@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 //	public PlayerManager playerManager;
     
 	public bool is_movable = false;
+	public bool is_dead = false;
 	private SpriteRenderer facing_right;
 
     public Sprite nonActivePlayer;
@@ -33,8 +34,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		Char = GetComponent<Rigidbody2D> ();
 		facing_right = GetComponent<SpriteRenderer> ();
-//		manager = GameObject.FindGameObjectWithTag ("Manager");
-//		playerManager = manager.GetComponentInChildren<PlayerManager> ();
+
 
 
 	}
