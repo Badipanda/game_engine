@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
-
-
+using Assets.ressources.Scripts;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -17,7 +16,9 @@ public class PlayerManager : MonoBehaviour
 	public ButtonManager buttonManager;
 
     [SerializeField]
-    public BulletController health;
+    public Health health;
+    [SerializeField]
+    public Image healthbar;
 
     public enum PerformAction
 	{
@@ -36,7 +37,7 @@ public class PlayerManager : MonoBehaviour
 			activePlayers++;
 			playerScript = tank.GetComponent<PlayerMovement> ();
 
-
+            //healthbar.fillAmount = health.TakeDamage(-Health.maxHealth);
 
 			playerScript.playerID = activePlayers;
 			Debug.Log (tank + " hat die ID: " + playerScript.playerID);
