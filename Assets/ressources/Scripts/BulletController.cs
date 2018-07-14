@@ -15,74 +15,71 @@ public class BulletController : MonoBehaviour
 	public Vector2 firePointPosition;
 	public static GroundController groundController;
 
+    public ParticleSystem boom;
+    public GameObject explosion;
+
+    public bool gotHit;
+    
+
 	public bool overriden;
 
-    //GUI
-    public Image healthbar_P1;
-    public float lifepoints;
-    public Text lifepointsText;
-	
-	public bool gotHit;
+    private void Awake()
+    {
+        boom.Play();
 
-	public float MaxValue { get; set; }
+    }
 
-	public float Value {
-		set {
-			fillAmount = Health (value, 0, MaxValue, 0, 1);
-		}
-	}
-
-    public object HealthRefScript { get; private set; }
-
-    [SerializeField]
-	private float fillAmount;
-
-	// Use this for initialization
-	public virtual void Start ()
+    // Use this for initialization
+    public virtual void Start ()
 	{
 		overriden = false;
         //		gameObject.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 100);
-        lifepoints = 100;
     }
 
 	// Update is called once per frame
 	public void Update ()
 	{
-        lifepoints = 90;
-        healthbar_P1.fillAmount = (float)lifepoints / (float)100;
-        //this.healthbar_P1.fillAmount = TakeDamage(lifepoints);
-        if (lifepoints < 100)
-        {
-            healthbar_P1.fillAmount = (float)lifepoints / (float)100;
-            lifepointsText.text = lifepoints.ToString() + "%";
-        }
+        boom.Play();
     }
 
 	public virtual void OnCollisionEnter2D (Collision2D coll)
 	{
-        var hit = coll.gameObject;
-        var health = hit.GetComponent<Health>();
 
-        healthbar_P1 = GetComponent<Image>();
-
-		if (!overriden) {
-			Debug.Log ("enter collision");
+        
+        if (!overriden) {
+            
+            Debug.Log ("enter collision");
 			if (coll.collider.tag == "Ground") {
 
 				groundController.DestroyGround (destructionCircle);
-				Destroy (gameObject);
+				Destroy (this.gameObject);
+                Instantiate(boom);
+                boom.Play();
 
 
-			} else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
+            } else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
                 Destroy (gameObject);
-				print ("hit Tank");
+                Instantiate(boom);
+                boom.Play();
+                print ("hit Tank");
                 //health.TakeDamage(20);
-                lifepoints -= 20;
-                print(lifepoints);
-                ;
+                
             }
-		}
+            
+
+        }
 	}
+    public void OnTriggerEnter(Collider other)
+    {
+        boom.Play();
+    }
+
+    public void Explode()
+    {
+        boom.Play();
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
+
+    }
 
 	public void SetPosition (Vector2 mouse, Vector2 fire)
 	{
@@ -92,10 +89,6 @@ public class BulletController : MonoBehaviour
 
 	}
 
-    private float Health(float value, float inMin, float inMax, float outMin, float outMax)
-    {
-        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-    }
 
     void OnBecameInvisible ()
 	{

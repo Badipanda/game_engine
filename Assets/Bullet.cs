@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet {
+public class Bullet : MonoBehaviour {
     public GameObject bullet;
     public float speed = 0;
     public Transform firePoint;
@@ -13,9 +13,7 @@ public class Bullet {
 	public int damage = 10;
 
 
-
-
-	public Bullet(){
+    public Bullet(){
 	
 	}
 	public Bullet(GameObject bulletType, float bulletSpeed, Transform bulletPosition, Transform crossPosition)
@@ -34,8 +32,8 @@ public class Bullet {
         Debug.Log("shoot");
 
 
-//        mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-		mousePosition = new Vector2(crossPoint.position.x, crossPoint.position.y);
+        //        mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        mousePosition = new Vector2(crossPoint.position.x, crossPoint.position.y);
 
 		firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
 

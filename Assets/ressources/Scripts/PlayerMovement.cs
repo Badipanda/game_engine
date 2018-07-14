@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.ressources.Scripts;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,8 +21,15 @@ public class PlayerMovement : MonoBehaviour
     private float h;
 	private float jump_duration;
 
+    AudioScriptTankShot audioTankShot;
+    
 
-	void Start ()
+    public void Awake()
+    {
+        
+    }
+
+    void Start ()
 	{
 		Char = GetComponent<Rigidbody2D> ();
 		facing_right = GetComponent<SpriteRenderer> ();
@@ -36,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 //        		playerManager.NextPlayerMove();
         if (is_movable)
         {
+            
             this.gameObject.GetComponent<SpriteRenderer>().sprite = activePlayer;
         }
         else {
@@ -53,9 +62,9 @@ public class PlayerMovement : MonoBehaviour
 			h = Input.GetAxis ("Horizontal");
 			//Check to flip;
 			Flip ();
+            Vector3 actual_velocity = Char.velocity;
 
-			Vector3 actual_velocity = Char.velocity;
-
+            
 
 
 			if (Input.GetButton ("Jump")) {
