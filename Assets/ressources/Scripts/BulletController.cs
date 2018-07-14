@@ -14,11 +14,13 @@ public class BulletController : MonoBehaviour
 	public Vector2 firePointPosition;
 	public static GroundController groundController;
 
-//	public ParticleSystem boom;
-//	public GameObject explosion;
-
+	//	public ParticleSystem boom;
+	//	public GameObject explosion;
+	private static GameObject manager;
+	public AudioManager audioManager;
  
-
+	public ParticleSystem smoke;
+	public ParticleSystem explode;
 
 	private Player_Health p_health;
 
@@ -37,7 +39,8 @@ public class BulletController : MonoBehaviour
 	// Use this for initialization
 	public virtual void Start ()
 	{
-		
+		explode.Stop ();
+		MakeSound ();
 		//		gameObject.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 100);
 
 	}
@@ -48,20 +51,28 @@ public class BulletController : MonoBehaviour
 
 	}
 
+	void MakeSound ()
+	{
+		manager = GameObject.FindGameObjectWithTag ("Manager");
+		audioManager = manager.GetComponent<AudioManager> ();
+		audioManager.PlayTankShot ();
+	}
+
 	public virtual void OnCollisionEnter2D (Collision2D coll)
 	{
 
 		if (coll.collider.tag == "Ground") {
 
 			groundController.DestroyGround (destructionCircle);
-			Destroy (this.gameObject);
+			Explode ();
+//			Destroy (this.gameObject);
 //			Instantiate (boom);
 //			boom.Play ();
 
 
 		} else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
-			Destroy (gameObject);
-
+//			Destroy (gameObject);
+			Explode ();
 //			Instantiate (boom);
 //			boom.Play ();
                 
@@ -80,8 +91,19 @@ public class BulletController : MonoBehaviour
 
 
 
+
 	public void Explode ()
 	{
+		explode.Play ();
+		smoke.Stop ();
+
+		Destroy (this.gameObject.GetComponent<SpriteRenderer>());
+		Destroy (this.gameObject.GetComponent<Rigidbody2D>());
+		Destroy (this.gameObject.GetComponent<CircleCollider2D>());
+		Destroy (this.gameObject.GetComponent<BulletController>());
+		Destroy (gameObject, smoke.duration);
+
+
 //		boom.Play ();
 //		Instantiate (explosion, transform.position, explosion.transform.rotation);
 
@@ -96,6 +118,6 @@ public class BulletController : MonoBehaviour
 
 	void OnBecameInvisible ()
 	{
-		Destroy (gameObject);
+//		Destroy (gameObject);
 	}
 }

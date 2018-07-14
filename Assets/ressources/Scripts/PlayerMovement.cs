@@ -6,6 +6,9 @@ using Assets.ressources.Scripts;
 public class PlayerMovement : MonoBehaviour
 {
 
+	private static GameObject manager;
+	public AudioManager audioManager;
+
 	private Rigidbody2D Char;
 	public float speed = 100;
 	public int playerID = 0;
@@ -22,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private float h;
 	private float jump_duration;
 
-    AudioScriptTankShot audioTankShot;
+//    AudioScriptTankShot audioTankShot;
     
 
     public void Awake()
@@ -34,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		Char = GetComponent<Rigidbody2D> ();
 		facing_right = GetComponent<SpriteRenderer> ();
+		manager = GameObject.FindGameObjectWithTag ("Manager");
+		audioManager = manager.GetComponent<AudioManager> ();
 
 
 
@@ -64,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
 			Flip ();
             Vector3 actual_velocity = Char.velocity;
 
+//			audioManager.PlayTankMove ();
             
 
 

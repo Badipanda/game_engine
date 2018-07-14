@@ -26,13 +26,13 @@ public class BouncegranateBehaviour : BulletController
 
 			if (bounce_counter >= 3) {
 				groundController.DestroyGround (destructionCircle);
-				Destroy (gameObject);
+				Explode();
 			}
 
 
 		} else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
 			groundController.DestroyGround (destructionCircle);
-			Destroy (gameObject);
+			Explode ();
 		}
 //		}
 
