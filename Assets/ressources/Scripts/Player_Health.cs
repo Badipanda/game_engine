@@ -18,7 +18,6 @@ public class Player_Health : MonoBehaviour
 	public float lifepoints;
 	public Text lifepointsText;
 	public Text playerName;
-    public Text GameOverText;
 
     private float fillAmount;
 
@@ -40,22 +39,26 @@ public class Player_Health : MonoBehaviour
 
 	public void SetHealth (float amount)
 	{
-		healthPoints -= amount;
+		
 		if (healthPoints > 0) {
+			healthPoints -= amount;
 			healthbar.fillAmount = healthPoints / 100f;
 			//this.healthbar_P1.fillAmount = TakeDamage(lifepoints);
 			lifepointsText.text = healthPoints.ToString () + "%";
+			if (healthPoints <= 0) {
+				healthbar.fillAmount = 0f;
+				lifepointsText.text = "zerstört";
+				PlayerDeath ();
+			}
+		} else {
+			print("player schon tod");
 		}
-		if (healthPoints <= 0) {
-			healthbar.fillAmount = 0f;
-			lifepointsText.text = "zerstört";
-			PlayerDeath ();
-		}
+
 	}
 
 	public void SetPlayer (bool var)
 	{
-		print ("set color aufgerufen mit tempcolor: " + tempcolor + " und playercolor: " + playerName.color);
+//		print ("set color aufgerufen mit tempcolor: " + tempcolor + " und playercolor: " + playerName.color);
 
 		if (var) {
 			playerName.color = new Color32(009, 239, 157, 255);
@@ -67,14 +70,14 @@ public class Player_Health : MonoBehaviour
 	void PlayerDeath ()
 	{
 		print ("player died" + this.gameObject);
-		this.gameObject.GetComponent<PlayerMovement> ().is_dead = true;
 		Destroy (this.gameObject.GetComponent<PolygonCollider2D> ());
+		this.gameObject.GetComponent<PlayerMovement> ().is_dead = true;
+
 
 		manager = GameObject.FindGameObjectWithTag ("Manager");
 		playerManager = manager.GetComponent<PlayerManager> ();
-        //		playerManager.PlayerDied (); 
-        GameOverText.enabled = true;
-        GameOverText.text = GameOverText.text + "\nPlayer " + playerName.text + "wins!" + "\nPress Esc to return to Menu";
+		playerManager.PlayerDied(); 
+      
         StartCoroutine (Death ());
         //dead.enabled = false; //hier sollte eigentlich nach dem Tod nicht nochmal die Meldung "Next Player's Turn" kommen
 

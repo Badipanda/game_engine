@@ -198,8 +198,10 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   weaponScript: {fileID: 0}
   buttonManager: {fileID: 0}
+  is_gameover: 0
   healthbar: {fileID: 1518571976}
   nextPlayerTurnText: {fileID: 1149814709}
+  GameOverText: {fileID: 626805655}
 --- !u!212 &68917271
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -324,7 +326,7 @@ Prefab:
     - target: {fileID: 114635508436406556, guid: aa5eb607102452640aeb09023962da1e,
         type: 2}
       propertyPath: healthPoints
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa5eb607102452640aeb09023962da1e, type: 2}
@@ -2103,7 +2105,7 @@ Prefab:
     - target: {fileID: 114635508436406556, guid: aa5eb607102452640aeb09023962da1e,
         type: 2}
       propertyPath: healthPoints
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114635508436406556, guid: aa5eb607102452640aeb09023962da1e,
         type: 2}

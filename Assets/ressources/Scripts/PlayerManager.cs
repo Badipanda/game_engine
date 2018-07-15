@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 {
 	public int currentPlayer = 1;
 	public int activePlayers;
+	private int alive;
+	GameObject winner;
 	public GameObject[] tanks;
 	public PlayerMovement playerScript;
 	public Player_Health playerHealth;
@@ -16,12 +18,17 @@ public class PlayerManager : MonoBehaviour
 	private static GameObject manager;
 	public ButtonManager buttonManager;
 
+	public bool is_gameover;
+
 	[SerializeField]
 	public Image healthbar;
 
-    public Text nextPlayerTurnText;
+	public Text nextPlayerTurnText;
+	public Text GameOverText;
 
-    public enum PerformAction
+
+
+	public enum PerformAction
 	{
 		
 	}
@@ -32,6 +39,7 @@ public class PlayerManager : MonoBehaviour
 		//	Initialize active Players
 		activePlayers = 0;
 		//	FindObjectOfType all the Players
+		is_gameover = false;
 
 		tanks = GameObject.FindGameObjectsWithTag ("Tank");
 		foreach (GameObject tank in tanks) {
@@ -44,6 +52,7 @@ public class PlayerManager : MonoBehaviour
 			Debug.Log (tank + " hat die ID: " + playerScript.playerID);
             
 		}
+		alive = activePlayers;
 		print ("Es gibt " + activePlayers + "aktive Player");
 		SetActivePlayer ();
 	}
@@ -56,42 +65,55 @@ public class PlayerManager : MonoBehaviour
 
 	void SetActivePlayer ()
 	{
+		if (!is_gameover) {
+			tanks = GameObject.FindGameObjectsWithTag ("Tank");
+			foreach (GameObject tank in tanks) {
+				playerScript = tank.GetComponent<PlayerMovement> ();
+				playerHealth = tank.GetComponent<Player_Health> ();
 
-		tanks = GameObject.FindGameObjectsWithTag ("Tank");
+				if (playerScript.playerID == currentPlayer && playerScript.is_dead == false) {
+					playerScript.is_movable = true;
+					playerHealth.SetPlayer (true);
+					weaponScript = playerScript.GetComponentInChildren<Weapon> ();
+					manager = GameObject.FindGameObjectWithTag ("Manager");
+					buttonManager = manager.GetComponent<ButtonManager> ();
+					buttonManager.SetActiveButton (weaponScript.bulletPrefab);
+					Debug.Log ("Tank mit der ID: " + playerScript.playerID + " wurde aktiviert!");
+				} else if (playerScript.playerID != currentPlayer) {
+					playerScript.is_movable = false;
+					playerHealth.SetPlayer (false);
+				} else if (playerScript.is_dead) {
+					print ("player was dead");
+					NextPlayerMove ();
+				}
+			}
+		
+		} else {
+			nextPlayerTurnText.enabled = false;
+			print ("gameoverrrrrr");
+			GameOverText.enabled = true;
+			GameOverText.text = GameOverText.text + "\nPlayer " + winner + " wins!" + "\nPress Esc to return to Menu";
+		}
+
+
         
 
-		foreach (GameObject tank in tanks) {
-			playerScript = tank.GetComponent<PlayerMovement> ();
-			playerHealth = tank.GetComponent<Player_Health> ();
 
-			if (playerScript.playerID == currentPlayer && playerScript.is_dead == false) {
-				playerScript.is_movable = true;
-				playerHealth.SetPlayer (true);
-				weaponScript = playerScript.GetComponentInChildren<Weapon> ();
-				manager = GameObject.FindGameObjectWithTag ("Manager");
-				buttonManager = manager.GetComponent<ButtonManager> ();
-				buttonManager.SetActiveButton (weaponScript.bulletPrefab);
-				Debug.Log ("Tank mit der ID: " + playerScript.playerID + " wurde aktiviert!");
-			} else if (playerScript.playerID != currentPlayer) {
-				playerScript.is_movable = false;
-				playerHealth.SetPlayer (false);
-			} else if (playerScript.is_dead) {
-				print ("player was dead");
-				NextPlayerMove ();
-			}
-		}
 	}
-    IEnumerator NextPlayerMoveTextWait()
-    {
-        yield return new WaitForSeconds(1.5f);
-        nextPlayerTurnText.enabled = false;
-    }
 
-    public void NextPlayerMove ()
+	IEnumerator NextPlayerMoveTextWait ()
 	{
-        nextPlayerTurnText.enabled = true;
-        StartCoroutine(NextPlayerMoveTextWait());
-        if (currentPlayer < activePlayers) {
+		yield return new WaitForSeconds (1.5f);
+		nextPlayerTurnText.enabled = false;
+
+
+	}
+
+	public void NextPlayerMove ()
+	{
+		nextPlayerTurnText.enabled = true;
+		StartCoroutine (NextPlayerMoveTextWait ());
+		if (currentPlayer < activePlayers) {
 			currentPlayer++;
 		} else {
 			currentPlayer = 1;
@@ -99,23 +121,27 @@ public class PlayerManager : MonoBehaviour
 		SetActivePlayer ();
 	}
 
-//	public void PlayerDied ()
-//	{
-//		activePlayers = activePlayers - 1;
-//		print ("Es gibt noch active player: " + activePlayers);
-//		if (activePlayers <= 1) {
-//			print ("___________________SPIELENDE_______________");
-//			tanks = GameObject.FindGameObjectsWithTag ("Tank");
-//			foreach (GameObject tank in tanks) {
-//				playerScript = tank.GetComponent<PlayerMovement> ();
-//				if (playerScript.is_dead) {
-//					print ("player: " + tank + " wins");
-//
-//				}
-//			}
-//
-//		}
+	public void PlayerDied ()
+	{
+		print ("--------------------------------Player died function");
 
-//	}
+		alive = alive - 1;
+		print ("Es gibt noch active player: " + alive);
+		if (alive <= 1) {
+			is_gameover = true;
+			print ("___________________SPIELENDE_______________");
+			tanks = GameObject.FindGameObjectsWithTag ("Tank");
+			foreach (GameObject tank in tanks) {
+				playerScript = tank.GetComponent<PlayerMovement> ();
+				if (playerScript.is_dead && playerScript.GetComponent<PolygonCollider2D> ()) {
+					print ("player: " + tank + " wins");
+					winner = tank;
+
+				}
+			}
+
+		}
+
+	}
 }
 
