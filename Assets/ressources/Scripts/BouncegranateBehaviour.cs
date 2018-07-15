@@ -26,20 +26,30 @@ public class BouncegranateBehaviour : BulletController
 
 			if (bounce_counter >= 3) {
 				groundController.DestroyGround (destructionCircle);
+<<<<<<< HEAD
 				Explode();
                 manager = GameObject.FindGameObjectWithTag("Manager");
                 audioManager = manager.GetComponent<AudioManager>();
                 audioManager.PlayTankShot();
             }
+=======
+				Destroy (gameObject);
+			}
+>>>>>>> d640acff08531e9227d5a3f69df139a18e01c619
 
 
 		} else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
 			groundController.DestroyGround (destructionCircle);
+<<<<<<< HEAD
 			Explode ();
             manager = GameObject.FindGameObjectWithTag("Manager");
             audioManager = manager.GetComponent<AudioManager>();
             audioManager.PlayTankShot();
         }
+=======
+			Destroy (gameObject);
+		}
+>>>>>>> d640acff08531e9227d5a3f69df139a18e01c619
 //		}
 
 //		else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable")
