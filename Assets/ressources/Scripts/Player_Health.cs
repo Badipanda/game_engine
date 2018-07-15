@@ -55,7 +55,7 @@ public class Player_Health : MonoBehaviour
 		if (var) {
 			playerName.color = new Color32(009, 239, 157, 255);
 		} else {
-			playerName.color = new Color32(196, 155, 064, 255);
+			playerName.color = Color.white;
 		}
 	}
 
