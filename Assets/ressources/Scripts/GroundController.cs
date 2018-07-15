@@ -17,18 +17,18 @@ public class GroundController : MonoBehaviour
 	void Start ()
 	{
 		sr = GetComponent<SpriteRenderer> ();
-		// sr : variavel global de GroundController, ref para o SpriteRenderer de Ground
-		//Texture2D tex = (Texture2D)Resources.Load("layer-6");
-		// Resources.Load("nome_do_arquivo") carrega um arquivo localizado
-		// em Assets/Resources
-		InitSprite (tex);
+        // sr : GroundController globale Variable, Ref für Ground SpriteRenderer
+        //Texture2D tex = (Texture2D)Resources.Load("layer-6");
+        // Resources.Load ("Dateiname") lädt eine lokalisierte Datei
+        // in Assets / Ressourcen
+        InitSprite(tex);
 	}
 
 	private void InitSprite (Texture2D old_tex)
 	{
 		tex_cur = (Texture2D)Instantiate (old_tex);
-		// Criamos uma Texture2D clone de tex para nao alterarmos a imagem original 
-		sr.sprite = Sprite.Create (tex_cur,
+        // Wir haben einen Texture2D-Klon erstellt, also haben wir das Originalbild nicht verändert 
+        sr.sprite = Sprite.Create (tex_cur,
 			new Rect (0f, 0f, old_tex.width, old_tex.height),
 			new Vector2 (0.5f, 0.5f), 100f);
 		transp = new Color (0f, 0f, 0f, 0f);
@@ -66,11 +66,11 @@ public class GroundController : MonoBehaviour
 //		Debug.Log ("chamou DestroyGround");
 
 		V2int c = World2Pixel (cc.bounds.center.x, cc.bounds.center.y);
-		// c => centro do circulo de destruiçao em pixels
-		int r = Mathf.RoundToInt (cc.bounds.size.x * widthPixel / widthWorld);
-		// r => raio do circulo de destruiçao em 
+        // c => Mittelpunkt des Zerstörungskreises in Pixeln
+        int r = Mathf.RoundToInt (cc.bounds.size.x * widthPixel / widthWorld);
+        // r => Radius des Zerstörungskreises
 
-		int x, y, px, nx, py, ny, d;
+        int x, y, px, nx, py, ny, d;
 
 		for (x = 0; x <= r; x++) {
 			d = (int)Mathf.RoundToInt (Mathf.Sqrt (r * r - x * x));
