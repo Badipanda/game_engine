@@ -136,7 +136,7 @@ public class Weapon : MonoBehaviour
 	}
 
 	IEnumerator EndRound(){
-		yield return new WaitForSeconds (3);
+		yield return new WaitForSeconds (0);
 		manager = GameObject.FindGameObjectWithTag ("Manager");
 		playerManager = manager.GetComponent<PlayerManager> ();
 		playerManager.NextPlayerMove (); 

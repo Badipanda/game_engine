@@ -19,13 +19,13 @@ public class Player_Health : MonoBehaviour
 	public Text lifepointsText;
 	public Text playerName;
 
-    private float fillAmount;
+	private float fillAmount;
 
-    public static PlayerManager dead;
+	public static PlayerManager dead;
     
 
-    // Use this for initialization
-    void Start ()
+	// Use this for initialization
+	void Start ()
 	{
 		playerName.text = "P" + this.gameObject.GetComponent<PlayerMovement> ().playerID.ToString ();
 		tempcolor = playerName.color;
@@ -51,7 +51,7 @@ public class Player_Health : MonoBehaviour
 				PlayerDeath ();
 			}
 		} else {
-			print("player schon tod");
+			print ("player schon tod");
 		}
 
 	}
@@ -61,7 +61,7 @@ public class Player_Health : MonoBehaviour
 //		print ("set color aufgerufen mit tempcolor: " + tempcolor + " und playercolor: " + playerName.color);
 
 		if (var) {
-			playerName.color = new Color32(009, 239, 157, 255);
+			playerName.color = new Color32 (009, 239, 157, 255);
 		} else {
 			playerName.color = Color.white;
 		}
@@ -69,25 +69,50 @@ public class Player_Health : MonoBehaviour
 
 	void PlayerDeath ()
 	{
-		print ("player died" + this.gameObject);
-		Destroy (this.gameObject.GetComponent<PolygonCollider2D> ());
-		this.gameObject.GetComponent<PlayerMovement> ().is_dead = true;
+		if (this.gameObject.GetComponent<PlayerMovement> ().is_dead == false) {
+			print ("player died" + this.gameObject);
+			Destroy (this.gameObject.GetComponent<PolygonCollider2D> ());
+			this.gameObject.GetComponent<PlayerMovement> ().is_dead = true;
 
 
-		manager = GameObject.FindGameObjectWithTag ("Manager");
-		playerManager = manager.GetComponent<PlayerManager> ();
-		playerManager.PlayerDied(); 
+			manager = GameObject.FindGameObjectWithTag ("Manager");
+			playerManager = manager.GetComponent<PlayerManager> ();
+			playerManager.PlayerDied (); 
+			if (playerManager.currentPlayer == this.gameObject.GetComponent<PlayerMovement> ().playerID) {
+				playerManager.NextPlayerMove ();
+			}
       
-        StartCoroutine (Death ());
-        //dead.enabled = false; //hier sollte eigentlich nach dem Tod nicht nochmal die Meldung "Next Player's Turn" kommen
-
-    }
+			StartCoroutine (Death ());
+			//dead.enabled = false; //hier sollte eigentlich nach dem Tod nicht nochmal die Meldung "Next Player's Turn" kommen
+		}
+	}
 
 	IEnumerator Death ()
 	{
-        yield return new WaitForSeconds (2);
+		yield return new WaitForSeconds (2);
 		Destroy (this.gameObject.GetComponent<Rigidbody2D> ());
 
+	}
+
+	public virtual void OnCollisionEnter2D (Collision2D coll)
+	{
+		
+
+		//		print ("!!!!!!!!!!!!!collider HIT: " + destructionCircle.IsTouchingLayers("Player"));
+
+
+
+
+
+	}
+
+	void OnBecameInvisible ()
+	{
+		if (this.gameObject.GetComponent<PlayerMovement> ().is_dead == false) {
+			healthbar.fillAmount = 0f;
+			lifepointsText.text = "zerstört";
+			PlayerDeath ();
+		}
 	}
 
 }

@@ -109,14 +109,14 @@ public class GroundController : MonoBehaviour
 
 	private IEnumerator AddSpriteCollider ()
 	{
-		yield return new WaitForEndOfFrame ();
+		
 
 		foreach (PolygonCollider2D collider in GetComponents<PolygonCollider2D>()) {
-			DestroyImmediate (collider);
+			Destroy (collider);
 		}
 
 		gameObject.AddComponent<PolygonCollider2D> ();
-//		yield return null;
+		yield return null;
 
 	}
 

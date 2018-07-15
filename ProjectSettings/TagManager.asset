@@ -12,6 +12,7 @@ TagManager:
   - Ground
   - Manager
   - DefaultBullet
+  - Wall
   layers:
   - Default
   - TransparentFX

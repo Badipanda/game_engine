@@ -58,7 +58,7 @@ public class BulletController : MonoBehaviour
 		audioManager.PlayTankShot ();
 	}
 
-    void MakeSoundExplosion()
+    public void MakeSoundExplosion()
     {
         manager = GameObject.FindGameObjectWithTag("Manager");
         audioManager = manager.GetComponent<AudioManager>();
@@ -73,7 +73,7 @@ public class BulletController : MonoBehaviour
 
     public virtual void OnCollisionEnter2D (Collision2D coll)
 	{
-
+//		print ("!!!!!!!!!!!!!collider HIT: " + destructionCircle.IsTouchingLayers("Player"));
 		if (coll.collider.tag == "Ground") {
 
 			groundController.DestroyGround (destructionCircle);
@@ -87,6 +87,7 @@ public class BulletController : MonoBehaviour
         } else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
 //			Destroy (gameObject);
 			Explode ();
+			groundController.DestroyGround (destructionCircle);
             MakeSoundExplosion();
 //			Instantiate (boom);
 //			boom.Play ();
@@ -98,7 +99,10 @@ public class BulletController : MonoBehaviour
 				p_health.SetHealth (10f);
 			}
                 
-		}
+		}else if (coll.collider.tag == "Wall") {
+			Destroy (gameObject);
+
+		} 
             
 
 	}
@@ -109,6 +113,9 @@ public class BulletController : MonoBehaviour
 
 	public void Explode ()
 	{
+//		destructionCircle.IsTouching (coll.collider.tag == "Tank");
+
+
 		explode.Play ();
 		smoke.Stop ();
 
@@ -116,7 +123,7 @@ public class BulletController : MonoBehaviour
 		Destroy (this.gameObject.GetComponent<Rigidbody2D>());
 		Destroy (this.gameObject.GetComponent<CircleCollider2D>());
 		Destroy (this.gameObject.GetComponent<BulletController>());
-		Destroy (gameObject, smoke.duration);
+		Destroy (this.gameObject, smoke.duration);
 
 
 //		boom.Play ();

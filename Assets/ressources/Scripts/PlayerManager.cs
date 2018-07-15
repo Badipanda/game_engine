@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 	public int currentPlayer = 1;
 	public int activePlayers;
 	private int alive;
-	GameObject winner;
+	private int winner;
 	public GameObject[] tanks;
 	public PlayerMovement playerScript;
 	public Player_Health playerHealth;
@@ -103,22 +103,26 @@ public class PlayerManager : MonoBehaviour
 
 	IEnumerator NextPlayerMoveTextWait ()
 	{
+		yield return new WaitForSeconds (4f);
+		nextPlayerTurnText.enabled = true;
 		yield return new WaitForSeconds (1.5f);
+
 		nextPlayerTurnText.enabled = false;
 
-
-	}
-
-	public void NextPlayerMove ()
-	{
-		nextPlayerTurnText.enabled = true;
-		StartCoroutine (NextPlayerMoveTextWait ());
 		if (currentPlayer < activePlayers) {
 			currentPlayer++;
 		} else {
 			currentPlayer = 1;
 		}
 		SetActivePlayer ();
+
+	}
+
+	public void NextPlayerMove ()
+	{
+		
+		StartCoroutine (NextPlayerMoveTextWait ());
+
 	}
 
 	public void PlayerDied ()
@@ -133,9 +137,9 @@ public class PlayerManager : MonoBehaviour
 			tanks = GameObject.FindGameObjectsWithTag ("Tank");
 			foreach (GameObject tank in tanks) {
 				playerScript = tank.GetComponent<PlayerMovement> ();
-				if (playerScript.is_dead && playerScript.GetComponent<PolygonCollider2D> ()) {
+				if (!playerScript.is_dead && playerScript.GetComponent<PolygonCollider2D> ()) {
 					print ("player: " + tank + " wins");
-					winner = tank;
+					winner = playerScript.playerID;
 
 				}
 			}
