@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.ressources.Scripts;
 
 public class Player_Health : MonoBehaviour
 {
@@ -17,11 +18,15 @@ public class Player_Health : MonoBehaviour
 	public float lifepoints;
 	public Text lifepointsText;
 	public Text playerName;
+    public Text GameOverText;
 
-	private float fillAmount;
+    private float fillAmount;
 
-	// Use this for initialization
-	void Start ()
+    public static PlayerManager dead;
+    
+
+    // Use this for initialization
+    void Start ()
 	{
 		playerName.text = "P" + this.gameObject.GetComponent<PlayerMovement> ().playerID.ToString ();
 		tempcolor = playerName.color;
@@ -67,20 +72,17 @@ public class Player_Health : MonoBehaviour
 
 		manager = GameObject.FindGameObjectWithTag ("Manager");
 		playerManager = manager.GetComponent<PlayerManager> ();
-//		playerManager.PlayerDied (); 
+        //		playerManager.PlayerDied (); 
+        GameOverText.enabled = true;
+        GameOverText.text = GameOverText.text + "\nPlayer " + playerName.text + "wins!" + "\nPress Esc to return to Menu";
+        StartCoroutine (Death ());
+        //dead.enabled = false; //hier sollte eigentlich nach dem Tod nicht nochmal die Meldung "Next Player's Turn" kommen
 
-		StartCoroutine (Death ());
-	
-
-
-
-
-
-	}
+    }
 
 	IEnumerator Death ()
 	{
-		yield return new WaitForSeconds (2);
+        yield return new WaitForSeconds (2);
 		Destroy (this.gameObject.GetComponent<Rigidbody2D> ());
 
 	}

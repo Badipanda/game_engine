@@ -17,11 +17,11 @@ public class PlayerManager : MonoBehaviour
 	public ButtonManager buttonManager;
 
 	[SerializeField]
-	public Health health;
-	[SerializeField]
 	public Image healthbar;
 
-	public enum PerformAction
+    public Text nextPlayerTurnText;
+
+    public enum PerformAction
 	{
 		
 	}
@@ -81,10 +81,17 @@ public class PlayerManager : MonoBehaviour
 			}
 		}
 	}
+    IEnumerator NextPlayerMoveTextWait()
+    {
+        yield return new WaitForSeconds(1.5f);
+        nextPlayerTurnText.enabled = false;
+    }
 
-	public void NextPlayerMove ()
+    public void NextPlayerMove ()
 	{
-		if (currentPlayer < activePlayers) {
+        nextPlayerTurnText.enabled = true;
+        StartCoroutine(NextPlayerMoveTextWait());
+        if (currentPlayer < activePlayers) {
 			currentPlayer++;
 		} else {
 			currentPlayer = 1;
