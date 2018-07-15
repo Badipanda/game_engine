@@ -14,13 +14,11 @@ public class BulletController : MonoBehaviour
 	public Vector2 firePointPosition;
 	public static GroundController groundController;
 
-	//	public ParticleSystem boom;
-	//	public GameObject explosion;
-	private static GameObject manager;
-	public AudioManager audioManager;
+//	public ParticleSystem boom;
+//	public GameObject explosion;
+
  
-	public ParticleSystem smoke;
-	public ParticleSystem explode;
+
 
 	private Player_Health p_health;
 
@@ -39,8 +37,7 @@ public class BulletController : MonoBehaviour
 	// Use this for initialization
 	public virtual void Start ()
 	{
-		explode.Stop ();
-		MakeSound ();
+		
 		//		gameObject.GetComponent<Rigidbody2D>().AddForce((mousePosition - firePointPosition) * 100);
 
 	}
@@ -51,33 +48,66 @@ public class BulletController : MonoBehaviour
 
 	}
 
+<<<<<<< HEAD
 	void MakeSound ()
 	{
 		manager = GameObject.FindGameObjectWithTag ("Manager");
 		audioManager = manager.GetComponent<AudioManager> ();
 		audioManager.PlayTankShot ();
 	}
+    void MakeSoundExplosion()
+    {
+        manager = GameObject.FindGameObjectWithTag("Manager");
+        audioManager = manager.GetComponent<AudioManager>();
+        audioManager.PlayAudioExlosion();
+    }
+    void BackgrondMusic()
+    {
+        manager = GameObject.FindGameObjectWithTag("Manager");
+        audioManager = manager.GetComponent<AudioManager>();
+        audioManager.PlayBackgroundMusic();
+    }
 
+    public virtual void OnCollisionEnter2D (Collision2D coll)
+=======
 	public virtual void OnCollisionEnter2D (Collision2D coll)
+>>>>>>> d640acff08531e9227d5a3f69df139a18e01c619
 	{
 
 		if (coll.collider.tag == "Ground") {
 
 			groundController.DestroyGround (destructionCircle);
+<<<<<<< HEAD
 			Explode ();
-//			Destroy (this.gameObject);
+            //			Destroy (this.gameObject);
+            //			Instantiate (boom);
+            //			boom.Play ();
+            MakeSoundExplosion();
+
+
+        } else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
+//			Destroy (gameObject);
+			Explode ();
+            //			Instantiate (boom);
+            //			boom.Play ();
+            MakeSoundExplosion();
+            //health.TakeDamage(20);
+            if (coll.gameObject.GetComponent<Player_Health> () != null) {
+=======
+			Destroy (this.gameObject);
 //			Instantiate (boom);
 //			boom.Play ();
 
 
 		} else if (coll.collider.tag == "Tank" || coll.collider.tag == "Hitable") {
-//			Destroy (gameObject);
-			Explode ();
+			Destroy (gameObject);
+
 //			Instantiate (boom);
 //			boom.Play ();
                 
 			//health.TakeDamage(20);
 			if (coll.gameObject.GetComponent<Player_Health> () != null) {
+>>>>>>> d640acff08531e9227d5a3f69df139a18e01c619
 				//					print ("folgender Tank wurde getroffen: " + coll.gameObject);
 				p_health = coll.gameObject.GetComponent<Player_Health> ();
 				p_health.SetHealth (10f);
@@ -91,19 +121,8 @@ public class BulletController : MonoBehaviour
 
 
 
-
 	public void Explode ()
 	{
-		explode.Play ();
-		smoke.Stop ();
-
-		Destroy (this.gameObject.GetComponent<SpriteRenderer>());
-		Destroy (this.gameObject.GetComponent<Rigidbody2D>());
-		Destroy (this.gameObject.GetComponent<CircleCollider2D>());
-		Destroy (this.gameObject.GetComponent<BulletController>());
-		Destroy (gameObject, smoke.duration);
-
-
 //		boom.Play ();
 //		Instantiate (explosion, transform.position, explosion.transform.rotation);
 
@@ -118,6 +137,6 @@ public class BulletController : MonoBehaviour
 
 	void OnBecameInvisible ()
 	{
-//		Destroy (gameObject);
+		Destroy (gameObject);
 	}
 }
