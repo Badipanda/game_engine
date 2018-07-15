@@ -10,13 +10,19 @@ public class AudioManager : MonoBehaviour {
 	public AudioSource sourceAudioTankShot;
 	public AudioClip audioTankShot;
 
-//	public AudioSource sourceAudioTankMove;
-//	public AudioClip audioTankMove;
+    public AudioSource sourceAudioExplosion;
+    public AudioClip audioTankExplosion;
 
-	// Use this for initialization
-	void Start () {
+    public AudioSource sourceBackgroundMusic;
+    public AudioClip audioBackgroundMusic;
+
+    //	public AudioSource sourceAudioTankMove;
+    //	public AudioClip audioTankMove;
+
+    // Use this for initialization
+    void Start () {
 		sourceAudioTankShot.clip = audioTankShot;
-
+        sourceAudioExplosion.clip = audioTankExplosion;
 	}
 	
 	// Update is called once per frame
@@ -29,8 +35,18 @@ public class AudioManager : MonoBehaviour {
 		sourceAudioTankShot.Play();
 	}
 
+    public void PlayAudioExlosion()
+    {
+        sourceAudioExplosion.mute = false;
+        sourceAudioExplosion.Play();
+    }
+
 	public void PlayTankMove(){
 //		sourceAudioTankMove.mute = false;
 //		sourceAudioTankMove.Play();
 	}
+    public void PlayBackgroundMusic()
+    {
+        sourceBackgroundMusic.Play();
+    }
 }

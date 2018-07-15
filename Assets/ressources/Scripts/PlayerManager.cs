@@ -20,6 +20,10 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField]
 	public Image healthbar;
 
+    public Text nextTurnText;
+
+    private string str;
+
 	public enum PerformAction
 	{
 		
@@ -28,8 +32,9 @@ public class PlayerManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//	Initialize active Players
-		activePlayers = 0;
+        nextTurnText.enabled = false;
+        //	Initialize active Players
+        activePlayers = 0;
 		//	FindObjectOfType all the Players
 
 		tanks = GameObject.FindGameObjectsWithTag ("Tank");
@@ -55,8 +60,8 @@ public class PlayerManager : MonoBehaviour
 
 	void SetActivePlayer ()
 	{
-
-		tanks = GameObject.FindGameObjectsWithTag ("Tank");
+        
+        tanks = GameObject.FindGameObjectsWithTag ("Tank");
         
 
 		foreach (GameObject tank in tanks) {
@@ -71,7 +76,7 @@ public class PlayerManager : MonoBehaviour
 				Debug.Log ("Tank mit der ID: " + playerScript.playerID + " wurde aktiviert!");
 			} else if (playerScript.playerID != currentPlayer) {
 				playerScript.is_movable = false;
-			} else if (playerScript.is_dead) {
+            } else if (playerScript.is_dead) {
 				print ("player was dead");
 				NextPlayerMove ();
 			}
@@ -82,29 +87,33 @@ public class PlayerManager : MonoBehaviour
 	{
 		if (currentPlayer < activePlayers) {
 			currentPlayer++;
-		} else {
+            nextTurnText.enabled = true;
+            new WaitForSeconds(3);
+            print("Spieler gewechselt");
+        } else {
 			currentPlayer = 1;
-		}
+        }
 		SetActivePlayer ();
-	}
+        //nextTurnText.enabled = false;
+    }
 
-//	public void PlayerDied ()
-//	{
-//		activePlayers = activePlayers - 1;
-//		print ("Es gibt noch active player: " + activePlayers);
-//		if (activePlayers <= 1) {
-//			print ("___________________SPIELENDE_______________");
-//			tanks = GameObject.FindGameObjectsWithTag ("Tank");
-//			foreach (GameObject tank in tanks) {
-//				playerScript = tank.GetComponent<PlayerMovement> ();
-//				if (playerScript.is_dead) {
-//					print ("player: " + tank + " wins");
-//
-//				}
-//			}
-//
-//		}
+    //	public void PlayerDied ()
+    //	{
+    //		activePlayers = activePlayers - 1;
+    //		print ("Es gibt noch active player: " + activePlayers);
+    //		if (activePlayers <= 1) {
+    //			print ("___________________SPIELENDE_______________");
+    //			tanks = GameObject.FindGameObjectsWithTag ("Tank");
+    //			foreach (GameObject tank in tanks) {
+    //				playerScript = tank.GetComponent<PlayerMovement> ();
+    //				if (playerScript.is_dead) {
+    //					print ("player: " + tank + " wins");
+    //
+    //				}
+    //			}
+    //
+    //		}
 
-//	}
+    //	}
 }
 
